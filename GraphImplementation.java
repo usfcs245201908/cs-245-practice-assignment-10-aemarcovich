@@ -63,6 +63,14 @@ public class  GraphImplementation implements Graph
     	}
     	return -1;
     }
+    public void print_sum(int[] sum)
+    {
+    	for(int x=0;x<sum.length;x++)
+    	{
+    		System.out.print(sum[x]+" ");
+    	}
+    	System.out.println();
+    }
 	public List<Integer> topologicalSort()
 	{
 
@@ -72,33 +80,35 @@ public class  GraphImplementation implements Graph
 		{
 			for(int j=0;j<vertices;j++)
 			{
-				sum[i]+=array[i][j];
+				sum[i]+=array[j][i];
 			}
 		}
 		for(int count=0;count<vertices;count++)
 		{
+			//print_sum(sum);
 			int n=findzero(sum);
-			schedule.add(n);
-			System.out.println(schedule.size());
-			for(int i=0;i<schedule.size();i++)
+/*			for(int i=0;i<schedule.size();i++)
 			{
 				//System.out.println(schedule.get(i));
-			}
+			}*/
 			if (n<0)
 			{
 				for(int i=0;i<schedule.size();i++)
 				{
-					//System.out.println(schedule.get(i));
+					System.out.println(schedule.get(i)+"test");
 				}
-				//return schedule;
+				return schedule;
 			}
+			//System.out.println(n);
+			schedule.add(n);
+			//System.out.println(schedule.size()+"mid");
 			sum[n]=-1;
 			for(int i=0;i<vertices;i++)
 			{
 				//System.out.println(sum[i]);
 				sum[i]-=array[n][i];
 			}
-			System.out.println(schedule.size()+"end");
+			//System.out.println(schedule.size()+"end");
 		}
 		//System.out.println(schedule.size());
 /*		for(int i=0;i<schedule.size();i++)
